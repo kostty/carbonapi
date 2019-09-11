@@ -15,8 +15,8 @@ echo "travis_fold:end:docker-build"
 
 echo "travis_fold:start:docker-up"
 echo -e "\e[33;1mStarting containers\e[0m"
-docker-compose up -d || { printf ">>> ERROR: Launching containers failed"; exit 2; }
-echo # `echo` to work around formatting issues after `docker-compose`
+docker-compose --no-ansi up -d|| { printf ">>> ERROR: Launching containers failed"; exit 2; }
+#echo # `echo` to work around formatting issues after `docker-compose`
 echo "travis_fold:end:docker-up"
 
 # This is guestimate for the time when the system goes up and operational.
