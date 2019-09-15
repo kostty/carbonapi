@@ -1,4 +1,5 @@
 language: go
+go: 1.12.x
 dist: trusty
 
 sudo: required
@@ -6,12 +7,19 @@ sudo: required
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install libcairo2-dev -y
+  - sudo apt-get install tree -y
 
-script: make all check vet
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
-
-matrix:
+jobs:
   include:
-    - go: 1.12.x
+    - stage: Tests
+      name: Unit tests
+      script:
+        - env
+        - mkdir -p /home/travis/gopath/src/github.com/bookingcom/carbonapi && rsync -a . ../../bookingcom/carbonapi/
+        - cd ../../bookingcom/carbonapi/
+        - make check
+        - make all
+          #after_success: bash <(curl -s https://codecov.io/bash)
+    - name: Integration tests
+      script: tests/system_test.sh
+
