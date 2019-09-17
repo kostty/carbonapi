@@ -31,7 +31,7 @@ end_fold docker-up
 
 # This is guestimate for the time when the system goes up and operational.
 # Doing this other ways is much more complex. May need to be increased on slow boxes.
-sleep 5
+#sleep 5
 
 METRIC_NAME="some.test.metric"
 TEST_VALUE=123456
