@@ -7,6 +7,9 @@ sudo: required
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install libcairo2-dev -y
+  - mkdir /home/travis/gopath/src/github.com/bookingcom
+  - rsync -av /home/travis/gopath/src/github.com/kostty/carbonapi /home/travis/gopath/src/github.com/bookingcom/
+  - cd /home/travis/gopath/src/github.com/bookingcom/carbonapi
 
 jobs:
   include:
